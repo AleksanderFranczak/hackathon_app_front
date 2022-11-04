@@ -5,7 +5,7 @@ import MainMenu from "./main_menu";
 const Wrapper = styled.div``;
 
 const Content = styled.main`
-  padding: 0 32px;
+  padding: 0 64px;
 `;
 
 const BasicLayout = ({ children }) => {
