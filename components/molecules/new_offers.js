@@ -44,11 +44,13 @@ const StyledLink = styled(Link)`
 `;
 
 const NewOffersWrapper = styled.div`
-  margin: 64px 32px;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: 1;
-  overflow: auto;
+  display: block;
+  width: 100%;
+
+  overflow-x: scroll;
+  padding: 64px 32px;
+
+  white-space: nowrap;
 `;
 
 const NewOffers = ({}) => {

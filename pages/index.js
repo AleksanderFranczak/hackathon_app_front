@@ -6,6 +6,7 @@ import mainPagePic from "../public/main_page_photo.png";
 import AppButton from "../components/atoms/app_button";
 import { appColors } from "../components/utils/colors";
 import NewOffers from "../components/molecules/new_offers";
+import { useRouter } from "next/router";
 
 const MainSection = styled.main`
   display: grid;
@@ -36,6 +37,7 @@ const TextSection = styled.div`
 `;
 
 export default function Home() {
+  const router = useRouter();
   return (
     <BasicLayout>
       <Head>
@@ -56,6 +58,13 @@ export default function Home() {
             human beds
           </Description>
           <AppButton text="Sprawdź ogłoszenia" />
+
+          <AppButton
+            onTap={() => router.push("/newOffer")}
+            style={{ marginTop: "16px" }}
+            isSecondary
+            text="Dodaj własne"
+          />
         </TextSection>
 
         <ImageWrapper>

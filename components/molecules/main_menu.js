@@ -2,9 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { appColors } from "../utils/colors";
+import AppButton from "../atoms/app_button";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
-  padding: 0 32px;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: center;
 `;
 
 const StyledList = styled.ul`
@@ -19,20 +23,51 @@ const StyledLink = styled(Link)`
   font-weight: 500;
   color: ${appColors.primaryColor};
   font-size: 18px;
+
+  &::after {
+    content: "";
+    display: block;
+
+    height: 1px;
+    width: ${(props) => (props.active ? "90%" : "0px")};
+    background-color: ${appColors.darkGreen};
+    margin: 4px auto 0 auto;
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    &::after {
+      width: 90%;
+    }
+  }
 `;
 
 const MainMenu = () => {
+  const router = useRouter();
+
+  console.log(router.asPath);
   return (
     <Container>
       <StyledList>
-        <StyledLink href="/"> Główna</StyledLink>
+        <StyledLink active={router.asPath == "/"} href="/">
+          {" "}
+          Główna
+        </StyledLink>
 
-        <StyledLink href="/offers">Oferty</StyledLink>
+        <StyledLink active={router.asPath == "/offers"} href="/offers">
+          Oferty
+        </StyledLink>
 
-        <StyledLink href="/orders">Orders</StyledLink>
+        <StyledLink active={router.asPath == "/orders"} href="/orders">
+          Twoje zamówienia
+        </StyledLink>
 
-        <StyledLink href="/about">O nas</StyledLink>
+        <StyledLink active={router.asPath == "/about"} href="/about">
+          O nas
+        </StyledLink>
       </StyledList>
+
+      <AppButton text="Zaloguj" />
     </Container>
   );
 };

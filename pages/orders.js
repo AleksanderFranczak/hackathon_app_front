@@ -4,7 +4,7 @@ import BasicLayout from "../components/molecules/basic_layout";
 export default function Orders() {
   return (
     <BasicLayout>
-      <h1> Zamówienia </h1>
+      <h1> Twoje ostatnie zamówienia </h1>
     </BasicLayout>
   );
 }

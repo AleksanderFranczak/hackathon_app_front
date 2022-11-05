@@ -8,13 +8,20 @@ import { RightArrowAlt } from "@styled-icons/boxicons-regular/RightArrowAlt";
 TimeAgo.addDefaultLocale(pl);
 
 const Wrapper = styled.div`
-  background-color: white;
+  /* background-color: white;
   border-radius: 15px;
   display: flex;
   position: relative;
+  
+   */
+  background-color: white;
+  display: inline-block;
+  margin-right: 64px;
   width: 250px;
   height: 200px;
-  margin-right: 64px;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #dfdfdf;
 `;
 
 const ProfileImage = styled.img`
@@ -36,6 +43,8 @@ const OfferName = styled.p`
 
 const OfferDescription = styled.p`
   margin: 0;
+  width: 200px;
+  white-space: pre-wrap;
 `;
 
 const AddTime = styled.p`
