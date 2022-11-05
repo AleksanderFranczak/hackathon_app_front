@@ -6,7 +6,10 @@ import AppFormInput from "../components/atoms/app_form_input";
 import { useEffect, useState } from "react";
 import AppButton from "../components/atoms/app_button";
 import axios from "axios";
-
+import ImageInput from "../components/atoms/image_input";
+import { ShutDown } from "styled-icons/remix-fill";
+import { URL } from "url";
+import OfferAddedSuccesModal from "../components/atoms/offer_added_success_modal";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Title = styled.h1`
@@ -38,13 +41,30 @@ const ButtonWrapper = styled.div`
 export default function NewOffer() {
   const [name, setName] = useState();
   const [description, setDescription] = useState();
+  const [image, setImage] = useState();
+  const [imageUrl, setImageUrl] = useState();
 
-  useEffect(() => {}, []);
+  const [loading, setLoading] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    console.log(image);
+
+    console.log(imageUrl);
+    if (image != null) {
+      var reader = new FileReader();
+      var url = reader.readAsDataURL(image);
+    }
+  }, [image]);
 
   const sendData = async () => {
-    await axios.post("/api/addNewOffer").then((e) => {
-      console.log(e);
-    });
+    try {
+      await axios.post("/api/addNewOffer").then((e) => {
+        console.log(e);
+      });
+    } catch (e) {
+      console.log("error", e);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -55,6 +75,7 @@ export default function NewOffer() {
 
   return (
     <BasicLayout>
+      <OfferAddedSuccesModal isOpen={visible} setIsOpen={setVisible} />
       <Title> Dodaj ogłoszenie</Title>
       <Description>
         Cats making all the muffins if it fits, i sits yet swipe at owner's legs
