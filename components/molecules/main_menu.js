@@ -3,18 +3,22 @@ import styled from "styled-components";
 import Link from "next/link";
 import { appColors } from "../utils/colors";
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding: 0 32px;
+`;
 
 const StyledList = styled.ul`
   list-style: none;
   display: flex;
+  justify-content: center;
 `;
 
 const StyledLink = styled(Link)`
   list-style: none;
-  margin-left: 24px;
+  margin-right: 48px;
   font-weight: 500;
   color: ${appColors.primaryColor};
+  font-size: 18px;
 `;
 
 const MainMenu = () => {

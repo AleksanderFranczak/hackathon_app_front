@@ -3,15 +3,18 @@ import Image from "next/image";
 import BasicLayout from "../components/molecules/basic_layout";
 import styled from "styled-components";
 import mainPagePic from "../public/main_page_photo.png";
+import AppButton from "../components/atoms/app_button";
+import { appColors } from "../components/utils/colors";
+import NewOffers from "../components/molecules/new_offers";
 
 const MainSection = styled.main`
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1.5fr;
 `;
 
 const Title = styled.h1`
   font-size: 48px;
-  color: #0f5057;
+  color: ${appColors.darkGreen};
   margin-bottom: 0;
 `;
 
@@ -22,12 +25,14 @@ const Description = styled.p`
 const ImageWrapper = styled.div`
   position: relative;
   justify-self: center;
+  padding: 64px;
 `;
 
 const TextSection = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
+  justify-self: end;
 `;
 
 export default function Home() {
@@ -50,6 +55,7 @@ export default function Home() {
             to pets them they like to meow back damn that dog but bawl under
             human beds
           </Description>
+          <AppButton text="Sprawdź ogłoszenia" />
         </TextSection>
 
         <ImageWrapper>
@@ -63,6 +69,8 @@ export default function Home() {
           />
         </ImageWrapper>
       </MainSection>
+
+      <NewOffers />
     </BasicLayout>
   );
 }
