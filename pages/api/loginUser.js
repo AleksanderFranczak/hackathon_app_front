@@ -2,13 +2,34 @@ import axios from "axios";
 
 export default async function handler(req, res) {
 
-  console.log(req.body, "chuj");
-    await axios
-    .get("https://62ebdbe355d2bd170e77f13e.mockapi.io/getData/1", {
-        email: req.body.email,
-        password: req.body.password
+  const {email,password} = req.body;
+  var bodyFormData = new FormData();
+  console.log(email);
+  bodyFormData.append('email', email);
+  bodyFormData.append('password', password);
+  console.log(bodyFormData);
+
+  await axios({
+    method: "post",
+    url: "http://sampledeploy.herokuapp.com/login",
+    data: bodyFormData,
+    headers: { "Content-Type": "multipart/form-data" },
+  })
+    .then(function (response) {
+      //handle success
+      console.log(response);
     })
-    .then((e) => {
-      res.send(e.data);
+    .catch(function (response) {
+      //handle error
+      console.log(response);
     });
+    // await axios
+    // .post("http://sampledeploy.herokuapp.com/login", {
+    //     // email: req.body.email,
+    //     // password: req.body.password,
+    //     data: bodyFormData
+    // })
+    // .then((e) => {
+    //   res.send(e.data);
+    // });
 }

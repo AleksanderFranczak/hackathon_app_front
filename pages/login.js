@@ -100,10 +100,13 @@ const LoginPage = () =>  {
     function validForm() {
       return email?.length > 0 && password?.length > 0;
     }
+
+    // console.log(bodyFormData);
+    // console.log("Chuj");
     const loginUser = async () => {
       await axios.post("/api/loginUser", {
         email: email,
-        password: password,
+        password: password
       }).then((e) => {
         console.log(e);
       });

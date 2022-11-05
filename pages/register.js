@@ -6,6 +6,7 @@ import { useState } from 'react'
 import styled from "styled-components";
 import { appColors } from "../components/utils/colors";
 import Link from "next/link";
+import AppFormInput from "../components/atoms/app_form_input";
 
 const Card = styled.form`
 display: flex;
@@ -88,8 +89,7 @@ const StyledLink = styled(Link)`
     margin: "50px";
 `;
 
-// const StyledInput = styled(Input)`
-//             /* fontWeight: 600; */
+// const StyledInput2 = styled.input`
 //             width: 100%;
 //             height: 30px;
 //             margin: 10px;
@@ -100,18 +100,6 @@ const StyledLink = styled(Link)`
 //             outline: none;
 //             border: none;
 // `;
-
-const StyledInput2 = styled.input`
-            width: 100%;
-            height: 30px;
-            margin: 10px;
-            /* borderRadius: 5px; */
-            color: #5E6472;
-            background: #e0dede;
-  
-            outline: none;
-            border: none;
-`;
 
 const RegisterPage = () =>  {
     const router = useRouter();
@@ -149,38 +137,13 @@ const RegisterPage = () =>  {
         <p style={{ marginBottom: "0" }}>Panel logowania</p>
         <FormWrapper onSubmit={handleSubmit}>
           <label>Email</label>
-          <input type="text" name="email" onChange={e => setEmail(e.target.value)}
-          style={{
-            fontWeight: 600,
-            width: "100%",
-            height: "30px",
-            margin: "10px",
-            borderRadius: "5px",
-            color: "#5E6472",
-            background: "#e0dede",
-  
-            outline: "none",
-            border: "none"
-          }}
-          ></input>
+          <AppFormInput type="text" name="email" onChange={e => setEmail(e.target.value)}></AppFormInput>
 
           <label>Hasło</label>
-          <input type="password" name="password" onChange={e => setPassword(e.target.value)}
-          style={{
-            fontWeight: 600,
-            width: "100%",
-            height: "30px",
-            margin: "10px",
-            borderRadius: "5px",
-            color: "#5E6472",
-            background: "#e0dede",
-  
-            outline: "none",
-            border: "none"
-          }}
-          ></input>
+          <AppFormInput type="password" name="password" onChange={e => setPassword(e.target.value)}
+          ></AppFormInput>
           {/* <input type="submit" disabled={!validForm()}></input> */}
-          <StyledInput2>Test</StyledInput2>
+          
           <LoginButton >Zaloguj</LoginButton>
           <StyledLink href="/register">Utwórz konto</StyledLink>
         </FormWrapper>
