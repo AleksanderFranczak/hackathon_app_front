@@ -45,7 +45,6 @@ const StyledLink = styled(Link)`
 const MainMenu = () => {
   const router = useRouter();
 
-  console.log(router.asPath);
   return (
     <Container>
       <StyledList>

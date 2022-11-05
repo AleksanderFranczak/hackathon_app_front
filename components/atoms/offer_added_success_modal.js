@@ -3,6 +3,7 @@ import React from "react";
 import AppButton from "./app_button";
 import { CheckmarkCircle2Outline } from "@styled-icons/evaicons-outline/CheckmarkCircle2Outline";
 import { appColors } from "../utils/colors";
+import { useRouter } from "next/router";
 
 const Background = styled.div`
   width: 100vw;
@@ -33,16 +34,26 @@ const Content = styled.div`
   }
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+  text-align: center;
+`;
 
 const Description = styled.p`
   margin-bottom: 32px;
+  margin-top: 0;
+  text-align: center;
 `;
 
 const OfferAddedSuccesModal = ({ isOpen, setIsOpen }) => {
+  const router = useRouter();
+  const handleClose = (e) => {
+    if (e.target == e.currentTarget) {
+      setIsOpen(false);
+    }
+  };
   return (
-    <Background visible={isOpen}>
-      <Content>
+    <Background onClick={handleClose} visible={isOpen}>
+      <Content onClick={() => null}>
         <CheckmarkCircle2Outline />
         <Title>Pomyślnie dodano nową ofertę</Title>
         <Description>
@@ -50,10 +61,12 @@ const OfferAddedSuccesModal = ({ isOpen, setIsOpen }) => {
         </Description>
 
         <AppButton
+          onTap={() => router.push("/offers")}
           style={{ marginBottom: "16px", width: "100%" }}
           text="Twoje ogłoszenia"
         />
         <AppButton
+          onTap={() => setIsOpen(false)}
           style={{ width: "100%" }}
           isSecondary={true}
           text="Zamknij"
