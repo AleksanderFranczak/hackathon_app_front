@@ -90,7 +90,7 @@ const StyledLink = styled(Link)`
     margin: "50px";
 `;
 
-const LoginPage = () =>  {
+const RegisterPage = () =>  {
     const router = useRouter();
 
     const [ email, setEmail ] = useState();
@@ -103,6 +103,8 @@ const LoginPage = () =>  {
    const handleSubmit = (e) => {
     console.log(email);
     console.log(password);
+
+    
     e.preventDefault();
     };
 
@@ -119,7 +121,7 @@ const LoginPage = () =>  {
             marginBottom: "8px",
           }}
         >
-          Zaloguj się
+          Rejestracja
         </h1>
         <p style={{ marginBottom: "0" }}>Panel logowania</p>
         <FormWrapper onSubmit={handleSubmit}>
@@ -163,4 +165,4 @@ const LoginPage = () =>  {
   )
 }
 
-export default LoginPage;
+export default RegisterPage;
