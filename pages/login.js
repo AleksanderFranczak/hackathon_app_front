@@ -6,6 +6,7 @@ import { useState } from 'react'
 import styled from "styled-components";
 import { appColors } from "../components/utils/colors";
 import Link from "next/link";
+import axios from "axios";
 
 const Card = styled.form`
 display: flex;
@@ -69,7 +70,7 @@ const FormWrapper = styled.form`
 
 const LoginButton = styled.button`
 font-size: 16px;
-color: black;
+color: white;
 padding: 8px 16px;
 font-weight: 500;
 outline: 0;
@@ -81,12 +82,12 @@ cursor: pointer;
 border:none;
 padding:12px 24px;
 width:100%;
-background-color: ${appColors.mediumGreen};
+background-color: ${appColors.darkGreen};
 margin-bottom: 10px;
 `;
 
 const StyledLink = styled(Link)`
-    color: ${appColors.mediumGreen};
+    color: ${appColors.darkGreen};
     margin: "50px";
 `;
 
@@ -99,10 +100,19 @@ const LoginPage = () =>  {
     function validForm() {
       return email?.length > 0 && password?.length > 0;
     }
+    const loginUser = async () => {
+      await axios.post("/api/loginUser", {
+        email: email,
+        password: password,
+      }).then((e) => {
+        console.log(e);
+      });
+    };
 
    const handleSubmit = (e) => {
     console.log(email);
     console.log(password);
+    loginUser();
     e.preventDefault();
     };
 
@@ -155,7 +165,7 @@ const LoginPage = () =>  {
           }}
           ></input>
           {/* <input type="submit" disabled={!validForm()}></input> */}
-          <LoginButton >Zaloguj</LoginButton>
+          <LoginButton disabled={!validForm()}>Zaloguj</LoginButton>
           <StyledLink href="/register">Utwórz konto</StyledLink>
         </FormWrapper>
         </LoginContainer>

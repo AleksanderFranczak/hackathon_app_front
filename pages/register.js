@@ -65,11 +65,9 @@ const FormWrapper = styled.form`
 `;
 
 
-
-
 const LoginButton = styled.button`
 font-size: 16px;
-color: black;
+color: white;
 padding: 8px 16px;
 font-weight: 500;
 outline: 0;
@@ -81,13 +79,38 @@ cursor: pointer;
 border:none;
 padding:12px 24px;
 width:100%;
-background-color: ${appColors.mediumGreen};
+background-color: ${appColors.darkGreen};
 margin-bottom: 10px;
 `;
 
 const StyledLink = styled(Link)`
-    color: ${appColors.mediumGreen};
+    color: ${appColors.darkGreen};
     margin: "50px";
+`;
+
+// const StyledInput = styled(Input)`
+//             /* fontWeight: 600; */
+//             width: 100%;
+//             height: 30px;
+//             margin: 10px;
+//             /* borderRadius: 5px; */
+//             color: #5E6472;
+//             background: #e0dede;
+  
+//             outline: none;
+//             border: none;
+// `;
+
+const StyledInput2 = styled.input`
+            width: 100%;
+            height: 30px;
+            margin: 10px;
+            /* borderRadius: 5px; */
+            color: #5E6472;
+            background: #e0dede;
+  
+            outline: none;
+            border: none;
 `;
 
 const RegisterPage = () =>  {
@@ -104,7 +127,7 @@ const RegisterPage = () =>  {
     console.log(email);
     console.log(password);
 
-    
+
     e.preventDefault();
     };
 
@@ -157,6 +180,7 @@ const RegisterPage = () =>  {
           }}
           ></input>
           {/* <input type="submit" disabled={!validForm()}></input> */}
+          <StyledInput2>Test</StyledInput2>
           <LoginButton >Zaloguj</LoginButton>
           <StyledLink href="/register">Utwórz konto</StyledLink>
         </FormWrapper>
