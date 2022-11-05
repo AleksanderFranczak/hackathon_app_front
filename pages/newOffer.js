@@ -10,7 +10,8 @@ import ImageInput from "../components/atoms/image_input";
 import { ShutDown } from "styled-icons/remix-fill";
 import { URL } from "url";
 import OfferAddedSuccesModal from "../components/atoms/offer_added_success_modal";
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import { FaceRollingEyesDimensions } from "@styled-icons/fa-regular/FaceRollingEyes";
+import { TailSpin } from "react-loader-spinner";
 
 const Title = styled.h1`
   position: relative;
@@ -41,35 +42,35 @@ const ButtonWrapper = styled.div`
 export default function NewOffer() {
   const [name, setName] = useState();
   const [description, setDescription] = useState();
-  const [image, setImage] = useState();
-  const [imageUrl, setImageUrl] = useState();
 
-  const [loading, setLoading] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    console.log(image);
-
-    console.log(imageUrl);
-    if (image != null) {
-      var reader = new FileReader();
-      var url = reader.readAsDataURL(image);
-    }
-  }, [image]);
+  const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const sendData = async () => {
+    setLoading(true);
     try {
-      await axios.post("/api/addNewOffer").then((e) => {
-        console.log(e);
-      });
+      await axios
+        .post("/api/addNewOffer", {
+          name,
+          description,
+        })
+        .then((e) => {
+          console.log(e);
+          setVisible(true);
+          setLoading(false);
+          setName(null);
+          setDescription(null);
+        });
     } catch (e) {
+      setLoading(false);
       console.log("error", e);
     }
   };
 
   const handleSubmit = (e) => {
-    console.log("submitting");
-    sendData();
+    if (name && description) {
+      sendData();
+    }
     e.preventDefault();
   };
 
@@ -84,24 +85,41 @@ export default function NewOffer() {
       </Description>
 
       <form onSubmit={handleSubmit}>
-        <AppFormInput onChange={(e) => setName(e.target.value)} label="Nazwa" />
         <AppFormInput
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          label="Nazwa"
+        />
+        <AppFormInput
+          value={description}
           onChange={(e) => setDescription(e.target.value)}
           label="Opis"
         />
-
-        <ButtonWrapper>
-          <AppButton
-            style={{ width: "100%", marginBottom: "16px" }}
-            text="Dodaj"
-            type="submit"
+        {loading ? (
+          <TailSpin
+            height="80"
+            width="80"
+            color="#0f5057"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
           />
-          <AppButton
-            style={{ width: "100%" }}
-            text="cofnij"
-            isSecondary={true}
-          />
-        </ButtonWrapper>
+        ) : (
+          <ButtonWrapper>
+            <AppButton
+              style={{ width: "100%", marginBottom: "16px" }}
+              text="Dodaj"
+              type="submit"
+            />
+            <AppButton
+              style={{ width: "100%" }}
+              text="cofnij"
+              isSecondary={true}
+            />
+          </ButtonWrapper>
+        )}
       </form>
     </BasicLayout>
   );

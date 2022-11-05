@@ -32,11 +32,11 @@ const StyledInput = styled.input`
   }
 `;
 
-const AppFormInput = ({ label, type, onChange }) => {
+const AppFormInput = ({ label, type, onChange, value }) => {
   return (
     <Wrapper>
       <Label>{label}</Label>
-      <StyledInput onChange={onChange} />
+      <StyledInput value={value} onChange={onChange} />
     </Wrapper>
   );
 };
