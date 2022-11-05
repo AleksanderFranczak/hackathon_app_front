@@ -21,6 +21,7 @@ const Title = styled.h1`
 
 const Description = styled.p`
   max-width: 350px;
+  margin-bottom: 32px;
 `;
 
 const ImageWrapper = styled.div`

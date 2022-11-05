@@ -2,11 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { mockNewOffers } from "../../mockData/new_offers_mock_data";
 import TimeAgo from "javascript-time-ago";
-import pl from "javascript-time-ago/locale/pl";
+
 import { appColors } from "../utils/colors";
 import { RightArrowAlt } from "@styled-icons/boxicons-regular/RightArrowAlt";
-TimeAgo.addDefaultLocale(pl);
-
+import { timeAgo } from "../utils/time_ago";
 const Wrapper = styled.div`
   /* background-color: white;
   border-radius: 15px;
@@ -94,9 +93,6 @@ const CallToActionButton = styled.div`
 `;
 
 const SingleOfferItem = ({ offer }) => {
-  console.log(mockNewOffers[0].createTime);
-  const timeAgo = new TimeAgo("pl-PL");
-
   return (
     <Wrapper>
       <ProfileImage src={mockNewOffers[0].profile} />
