@@ -66,7 +66,7 @@ const MainMenu = () => {
         </StyledLink>
       </StyledList>
 
-      <AppButton text="Zaloguj" />
+      <AppButton onTap={() => router.push("/login")} text="Zaloguj" />
     </Container>
   );
 };
